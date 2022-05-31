@@ -60,7 +60,7 @@ def initialize_generated_image(content_image):
     :param content_image: tensor of size (n_H,n_W,n_C)
     :return:tensor of size (n_H,n_W,n_C)
     """
-    generated_image = tf.Variable(tf.image.convert_image_dtype(content_image, tf.float32)) / 255.0
+    generated_image = tf.image.convert_image_dtype(content_image, tf.float32)
     noise = tf.random.uniform(tf.shape(generated_image), -0.05, 0.05)
     generated_image = tf.add(generated_image, noise)
     generated_image = tf.clip_by_value(generated_image, clip_value_min=0.0, clip_value_max=1.0)
